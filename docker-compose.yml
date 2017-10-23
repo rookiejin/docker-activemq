@@ -1,0 +1,29 @@
+version: '3'
+services:
+  activemq:
+    image: webcenter/activemq:latest
+    container_name: activemq
+    environment: 
+      ACTIVEMQ_MIN_MEMORY: 512 
+      ACTIVEMQ_MAX_MEMORY: 2048 
+      ACTIVEMQ_NAME: activemq-server
+      ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: 'true'
+      ACTIVEMQ_ADMIN_LOGIN: admin
+      ACTIVEMQ_ADMIN_PASSWORD: admin
+      ACTIVEMQ_WRITE_LOGIN: write
+      ACTIVEMQ_WRITE_PASSWORD: write
+      ACTIVEMQ_READ_LOGIN: read
+      ACTIVEMQ_READ_PASSWORD: read
+      ACTIVEMQ_JMX_LOGIN: jmx
+      ACTIVEMQ_JMX_PASSWORD: jmx
+      ACTIVEMQ_STATIC_TOPICS: bitcoin
+      ACTIVEMQ_STATIC_QUEUES: queue1 
+      ACTIVEMQ_MIN_MEMORY: 1024
+      ACTIVEMQ_MAX_MEMORY: 4096
+    ports: 
+       - 8161:8161
+       - 61616:61616
+       - 61613:61613
+    volumes:
+      - ./data:/data/activemq
+      - ./log:/var/log/activemq
